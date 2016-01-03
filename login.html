@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Login
+	</title>
+</head>
+<body>
+	<h1><center> Login Page </center></h1>
+	<form name="fm_login" action="loged_in.php" onsubmit="return validate(fm_login)" method="post">
+		<center>
+		<table>
+			<tr>
+				<td>Username</td>
+				<td><input type="textbox" name="tb_username" id="tb_username"></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="textbox" name="tb_password" id="tb_password"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input type="submit" name="bt_login" value="Login">
+					<input type="button" name="bt_cancel" value="Cancel">
+				</td>
+			</tr>
+		</table>
+		</center>
+	</form>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<html>
+<head>
+	<title>Group Registration</title>
+</head>
+<body>
+	<center>
+		<h1>Group Registration</h1>
+	</center>
+	<center>
+		<form name="fm_grp_registration" onsubmit="return validation()" method="post" action="grp_registered.php">
+		<table>
+			<tr>
+				<td>
+					Group Name
+				</td>
+				<td>
+					<input type="textbox" name="tb_name" id="tb_name">
+				</td>	
+			</tr>
+			<tr>
+				<td>
+					Event
+				</td>
+				<td>
+					<select name="lastq" id="lastq"> 
+						<option>Select</option>
+						<option>RoboWar</option>
+						<option>RoboExplorer</option>
+						<option>RoboSoccer</option>
+						<option>Gaming</option>
+						<option>Coding</option>
+						<option>JunkYard</option>
+					</select>
+				</td>	
+			</tr>
+			<tr>
+				<td>
+					Member 1
+					</td>
+				<td>
+					<input type="textbox" name="tb_mem1" id="tb_mem1">
+				</td>	
+			</tr>
+			<tr>
+				<td>
+					Member 2
+					</td>
+				<td>
+					<input type="textbox" name="tb_mem2" id="tb_mem2">
+				</td>	
+			</tr>
+			<tr>
+				<td>
+					Member 3
+					</td>
+				<td>
+					<input type="textbox" name="tb_mem3" id="tb_mem3">
+				</td>	
+			</tr>
+			<tr>
+				<td>
+					Member 4
+					</td>
+				<td>
+					<input type="textbox" name="tb_mem4" id="tb_mem4">
+				</td>	
+			</tr>	
+			<tr>
+				<td>
+				</td>
+				<td>
+					<input type="submit" name="bt_register" value="Register">
+					<button type="button" name="bt_cancel" onclick="window.location.href='login.html'">Cancel</button>
+				</td>	
+			</tr>	
+			</table>
+		</form>
+	</center>
+</body>
+</html>
