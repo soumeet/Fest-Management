@@ -1,61 +1,66 @@
 <html>
 <head>
 	<title>User Registration</title>
+	<link rel="stylesheet" href="bootstrap.css">
+	<script type="text/javascript" src="user_validate.js"></script>
 </head>
 <body>
 	<center>
-		<h1>User Registration</h1>
+		<h2>User Registration</h2>
 	</center>
 	<center>
-		<form name="fm_usr_register" onsubmit="return validation()" method="post" action="user_registered.php">
+		<form name="fm_usr_register" onsubmit="return validation(fm_usr_register)" method="post" action="user_registered.php">
 		<table>
 			<tr>
 				<td>
-					Name
-				</td>
-				<td>
-					<input type="textbox" name="tb_name" id="tb_name">
+					<div class="input-group">
+  						<span class="input-group-addon" id="sizing-addon2"></span>
+  						<input type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon2">
+					</div>
 				</td>	
 			</tr>
 			<tr>
 				<td>
-					Mobile Number
-				</td>
-				<td>
-					<input type="textbox" name="tb_mobile" id="tb_mobile">
+					<div class="input-group">
+  						<span class="input-group-addon" id="sizing-addon2"></span>
+  						<input type="text" class="form-control" placeholder="Mobile Number" aria-describedby="sizing-addon2">
+					</div>
 				</td>	
 			</tr>
 			<tr>
 				<td>
-					Email ID
-					</td>
-				<td>
-					<input type="textbox" name="tb_email" id="tb_email">
+					<div class="input-group">
+  						<span class="input-group-addon" id="sizing-addon2"></span>
+  						<input type="text" class="form-control" placeholder="Email ID" aria-describedby="sizing-addon2">
+					</div>
 				</td>	
 			</tr>
 			<tr>
 				<td>
-					College
-				</td>
-				<td>
-					<input type="textbox" name="tb_college" id="tb_college">
+					<div class="input-group">
+  						<span class="input-group-addon" id="sizing-addon2"></span>
+  						<input type="text" class="form-control" placeholder="College" aria-describedby="sizing-addon2">
+					</div>
 				</td>	
 			</tr>
 			<tr>
 				<td>
-					Gender
+					<label class="radio inline">
+						&nbsp&nbsp&nbsp&nbsp&nbsp
+  						<input type="radio" name="rb_gender" id="rb_gender" value="MALE" checked>
+  						Male
+  						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  						<input type="radio" name="rb_gender" id="rb_gender" value="FEMALE">
+  						Female
+					</label>
 				</td>
-				<td>
-					<input type="radio" name="rb_gender" value="MALE">MALE
-					<input type="radio" name="rb_gender" value="FEMALE">FEMALE
-				</td>	
 			</tr>	
 			<tr>
 				<td>
-				</td>
-				<td>
-					<input type="submit" name="bt_register" value="Register">
-					<button type="button" name="bt_cancel" onclick="window.location.href='login.html'">Cancel</button>
+					&nbsp&nbsp&nbsp
+					<input class="btn btn-default" type="submit" name="bt_register" value="Register">
+					&nbsp&nbsp&nbsp&nbsp
+					<input class="btn btn-default" type="submit" name="bt_cancel" value="Cancel">
 				</td>	
 			</tr>	
 			</table>
@@ -63,3 +68,4 @@
 	</center>
 	</body>
 </html>
+<!--				-->

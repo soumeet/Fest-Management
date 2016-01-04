@@ -1,29 +1,28 @@
 <html>
 <head>
 	<title>Group Registration</title>
+	<script type="text/javascript" src="group_validate.js"></script>
+	<link rel="stylesheet" href="bootstrap.css">
 </head>
 <body>
 	<center>
-		<h1>Group Registration</h1>
+		<h2>Group Registration</h2>
 	</center>
 	<center>
-		<form name="fm_grp_registration" onsubmit="return validation()" method="post" action="grp_registered.php">
+		<form name="fm_grp_registration" onsubmit="return validation(fm_grp_registration)" method="post" action="group_registered.php">
 		<table>
 			<tr>
 				<td>
-					Group Name
-				</td>
-				<td>
-					<input type="textbox" name="tb_name" id="tb_name">
+					<div class="input-group">
+  						<span class="input-group-addon" id="sizing-addon2"></span>
+  						<input type="text" class="form-control" placeholder="Group Name" aria-describedby="sizing-addon2" name="tb_grp_name" id="tb_grp_name">
+					</div>
 				</td>	
 			</tr>
 			<tr>
 				<td>
-					Event
-				</td>
-				<td>
-					<select name="lastq" id="lastq"> 
-						<option>Select</option>
+            		<select class="form-control" name="cb_event" id="cb_event"> 
+						<option>Event</option>
 						<option>RoboWar</option>
 						<option>RoboExplorer</option>
 						<option>RoboSoccer</option>
@@ -35,42 +34,42 @@
 			</tr>
 			<tr>
 				<td>
-					Member 1
-					</td>
-				<td>
-					<input type="textbox" name="tb_mem1" id="tb_mem1">
+					<div class="input-group">
+  						<span class="input-group-addon" id="sizing-addon2"></span>
+  						<input type="text" class="form-control" placeholder="Member 1" aria-describedby="sizing-addon2" name="tb_mem1" id="tb_mem1">
+					</div>
 				</td>	
 			</tr>
 			<tr>
 				<td>
-					Member 2
-					</td>
-				<td>
-					<input type="textbox" name="tb_mem2" id="tb_mem2">
+					<div class="input-group">
+  						<span class="input-group-addon" id="sizing-addon2"></span>
+  						<input type="text" class="form-control" placeholder="Member 2" aria-describedby="sizing-addon2" name="tb_mem2" id="tb_mem2">
+					</div>
 				</td>	
 			</tr>
 			<tr>
 				<td>
-					Member 3
-					</td>
-				<td>
-					<input type="textbox" name="tb_mem3" id="tb_mem3">
+					<div class="input-group">
+  						<span class="input-group-addon" id="sizing-addon2"></span>
+  						<input type="text" class="form-control" placeholder="Member 3" aria-describedby="sizing-addon2" name="tb_mem3" id="tb_mem3">
+					</div>
 				</td>	
 			</tr>
 			<tr>
 				<td>
-					Member 4
-					</td>
-				<td>
-					<input type="textbox" name="tb_mem4" id="tb_mem4">
+					<div class="input-group">
+  						<span class="input-group-addon" id="sizing-addon2"></span>
+  						<input type="text" class="form-control" placeholder="Member 4" aria-describedby="sizing-addon2" name="tb_mem4" id="tb_mem4">
+					</div>
 				</td>	
 			</tr>	
 			<tr>
 				<td>
-				</td>
-				<td>
-					<input type="submit" name="bt_register" value="Register">
-					<button type="button" name="bt_cancel" onclick="window.location.href='login.html'">Cancel</button>
+					&nbsp&nbsp&nbsp
+					<input class="btn btn-default" type="submit" name="bt_register" value="Register">
+					&nbsp&nbsp&nbsp&nbsp
+					<input class="btn btn-default" type="submit" name="bt_cancel" value="Cancel">
 				</td>	
 			</tr>	
 			</table>

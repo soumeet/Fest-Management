@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adminstration Login</title>
+	<script type="text/javascript" src="login_validate.js"></script>
+</head>
+<body>
+	<h1><center>Admin Login Page </center></h1>
+	<form name="fm_adm_login" action="admin.html" onsubmit="return validation(fm_adm_login)" method="post">
+		<center>
+		<table>
+			<tr>
+				<td>Username</td>
+				<td><input type="textbox" name="tb_username" id="tb_username"></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="textbox" name="tb_password" id="tb_password"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input type="submit" name="bt_login" value="Login">
+					<input type="button" name="bt_cancel" value="Cancel">
+				</td>
+			</tr>
+		</table>
+		</center>
+	</form>
+</body>
+</html>

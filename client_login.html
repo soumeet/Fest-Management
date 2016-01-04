@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>
-		Login
-	</title>
+	<title>Client Login</title>
+	<script type="text/javascript" src="login_validate.js"></script>
 </head>
 <body>
-	<h1><center> Login Page </center></h1>
-	<form name="fm_login" action="loged_in.php" onsubmit="return validate(fm_login)" method="post">
+	<h1><center>Client Login Page </center></h1>
+	<form name="fm_usr_login" action="client.html" onsubmit="return validation(fm_usr_login)" method="post">
 		<center>
 		<table>
 			<tr>
@@ -25,7 +24,6 @@
 					<input type="button" name="bt_cancel" value="Cancel">
 				</td>
 			</tr>
-		</table>
 		</center>
 	</form>
 </body>
