@@ -1,6 +1,7 @@
 var RE_NAME = /^(\w)+$/;
 var RE_MOBILE = /^\d{10}$/;
 var RE_EMAIL = /^(\w[\-\.]*\w+@(\w+\.)+[A-Za-z]+$)/;
+
 function user_validation(form){
 	var NAME = form.tb_name.value;
 	var MOBILE = form.tb_mobile.value;
