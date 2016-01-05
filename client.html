@@ -164,44 +164,133 @@
     </div>
     <div id="usr_search" class="tab-pane fade">
 			<h2><center>User Search Page </center></h2>
-			<form name="fm_usr_search" action="user_result.php" onsubmit="return validation(fm_adm_login)" method="post">
+			<form name="fm_usr_search" action="" onsubmit="return validation(fm_adm_login)" method="GET">
 				<center>
 				<table>
 					<tr>
 						<td>
 							<div class="input-group">
 		  						<span class="input-group-addon" id="basic-addon1">@</span>
-		  						<input type="text" class="form-control" placeholder="User Name" aria-describedby="basic-addon1">
+		  						<input type="text" class="form-control" placeholder="User Name" aria-describedby="basic-addon1"  name="tb_name" id="tb_name">
 							</div>
 						</td>
 						<td>
-							&nbsp<input class="btn btn-default" type="submit" value="Submit">
+							&nbsp<input class="btn btn-default" type="submit" value="Search" name="bt_search" id="bt_search">
 						</td>
 					</tr>
 				</table>
 				</center>
 			</form>
-    </div>
+			<div class="container">
+			<h3>User List</h3>
+			<p>#Message</p>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Gender</th>
+						<th>Mobile</th>
+						<th>Email ID</th>
+						<th>College</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						if(isset($_GET['bt_search'])){
+							/*if(empty($_GET['tb_name'])){
+								echo "Enter a search term";
+							}*/
+							$name = $_GET['tb_name'];
+							//echo $name;
+							include("db_connection.php");
+							if($name==""){
+								$sql = "SELECT * FROM db_users";
+							}else{
+								$sql = "SELECT * FROM db_users WHERE name = '$name'";
+							}
+							$result = mysqli_query($con, $sql);
+							while ($row = mysqli_fetch_array($result)){
+								echo "<tr>
+									<td>$row[id]</td>
+									<td>$row[name]</td>
+									<td>$row[gender]</td>
+									<td>$row[mobile]</td>
+									<td>$row[email]</td>
+									<td>$row[college]</td>
+								</tr>";
+							}
+						}
+					?>
+				</tbody>
+			</table>
+			</div>
+		</div>
     <div id="grp_search" class="tab-pane fade">
-			<h2><center>Group Search Page </center></h2>
-			<form name="fm_usr_search" action="group_result.php" onsubmit="return validation(fm_adm_login)" method="post">
+			<h1><center>Group Search Page </center></h1>
+			<form name="fm_grp_search" action="#" onsubmit="return validation(fm_grp_search)" method="GET">
 				<center>
 				<table>
 					<tr>
 						<td>
 							<div class="input-group">
 		  						<span class="input-group-addon" id="basic-addon1">@</span>
-		  						<input type="text" class="form-control" placeholder="Group Name" aria-describedby="basic-addon1">
+		  						<input type="text" class="form-control" placeholder="Group Name" aria-describedby="basic-addon1" name="tb_name" id="tb_name">
 							</div>
 						</td>
 						<td>
-							&nbsp<input class="btn btn-default" type="submit" value="Submit">
+							&nbsp<input class="btn btn-default" type="submit" value="Search" name="bt_search" id="bt_search">
 						</td>
 					</tr>
 				</table>
 				</center>
 			</form>
-    </div>
+			<div class="container">
+			<h3>Group List</h3>
+			<p>#Message</p>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Event</th>
+						<th>Member 1</th>
+						<th>Member 2</th>
+						<th>Member 3</th>
+						<th>Member 4</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						if(isset($_GET['bt_search'])){
+							/*if(empty($_GET['tb_name'])){
+								echo "Enter a search term";
+							}*/
+							$name = $_GET['tb_name'];
+							//echo $name;
+							include("db_connection.php");
+							if($name==""){
+								$sql = "SELECT * FROM db_groups";
+							}else{
+								$sql = "SELECT * FROM db_groups WHERE name = '$name'";
+							}
+							$result = mysqli_query($con, $sql);
+							while ($row = mysqli_fetch_array($result)){
+								echo "<tr>
+									<td>$row[group_id]</td>
+									<td>$row[name]</td>
+									<td>$row[event]</td>
+									<td>$row[member1]</td>
+									<td>$row[member2]</td>
+									<td>$row[member3]</td>
+									<td>$row[member4]</td>
+								</tr>";
+							}
+						}
+					?>
+				</tbody>
+			</table>
+			</div>
   </div>
 </div>
 </body>

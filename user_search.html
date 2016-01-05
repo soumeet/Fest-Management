@@ -2,27 +2,117 @@
 <html>
 <head>
 	<title>User Search</title>
+<!--
 	<link rel="stylesheet" href="bootstrap.css">
 	<script type="text/javascript" src="#"></script>
+-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<h1><center>User Search Page </center></h1>
-	<form name="fm_usr_search" action="admin.html" onsubmit="return validation(fm_adm_login)" method="post">
+	<form name="fm_usr_search" action="" onsubmit="return validation(fm_adm_login)" method="GET">
 		<center>
 		<table>
 			<tr>
 				<td>
 					<div class="input-group">
   						<span class="input-group-addon" id="basic-addon1">@</span>
-  						<input type="text" class="form-control" placeholder="User Name" aria-describedby="basic-addon1">
+  						<input type="text" class="form-control" placeholder="User Name" aria-describedby="basic-addon1"  name="tb_name" id="tb_name">
 					</div>
 				</td>
 				<td>
-					&nbsp<input class="btn btn-default" type="submit" value="Submit">
+					&nbsp<input class="btn btn-default" type="submit" value="Search" name="bt_search" id="bt_search">
 				</td>
 			</tr>
 		</table>
 		</center>
 	</form>
-</body>						
+	<div class="container">
+	<h3>User List</h3>
+	<p>#Message</p>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Gender</th>
+				<th>Mobile</th>
+				<th>Email ID</th>
+				<th>College</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+				if(isset($_GET['bt_search'])){
+					if(empty($_GET['tb_name'])){
+						echo "Enter a search term";
+					}
+					$name = $_GET['tb_name'];
+					//echo $name;
+					include("db_connection.php");
+					if($name==""){
+						$sql = "SELECT * FROM db_users";
+					}else{
+						$sql = "SELECT * FROM db_users WHERE name = '$name'";
+					}
+					$result = mysqli_query($con, $sql);
+					while ($row = mysqli_fetch_array($result)){
+						echo "<tr>
+							<td>$row[id]</td>
+							<td>$row[name]</td>
+							<td>$row[gender]</td>
+							<td>$row[mobile]</td>
+							<td>$row[email]</td>
+							<td>$row[college]</td>
+						</tr>";
+					}
+				}
+			?>
+		</tbody>
+	</table>
+	</div>
+</body>
 </html>
+
+
+
+<!--
+<div class="container">
+<h2>User List</h2>
+<p>#Message</p>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Gender</th>
+			<th>Mobile</th>
+			<th>Email ID</th>
+			<th>College</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1001</td>
+			<td>john</td>
+			<td>M</td>
+			<td>9638527410</td>
+			<td>john@example.com</td>
+			<td>mit</td>
+		</tr>
+		<tr>
+			<td>1001</td>
+			<td>Mary</td>
+			<td>F</td>
+			<td>9874563210</td>
+			<td>mary@example.com</td>
+			<td>harvard</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+-->
