@@ -24,8 +24,7 @@
 
 	}
 ?>
-
-/*	include("db_connection.php");
+  include("db_connection.php");
 	if($name==""){
 		$sql = "SELECT * FROM db_users";
 	}else{
@@ -42,20 +41,3 @@
 			<td>$row[college]</td>
 		</tr>";
 	}
-*/
-<?php
-	$name = $_POST['tb_name'];
-	if($name==""){
-		echo "Enter a search term";
-	}else{
-		echo $query;
-	}
-?>
-
-  if(isset($_get['tb_search'])){
-    if(empty($_get['tb_name'])){
-      echo "Enter a search term";
-    }
-    $name = $_get['tb_name'];
-    echo $name;
-  }

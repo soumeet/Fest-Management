@@ -1,34 +1,40 @@
 <?php
-	$name = $_POST['tb_name'];
+	$username = $_POST['tb_username'];
+	$password = $_POST['tb_password'];
+	$fname = $_POST['tb_fname'];
+	$lname = $_POST['tb_lname'];
 	$mobile = $_POST['tb_mobile'];
 	$email = $_POST['tb_email'];
-	$college = $_POST['tb_college'];
 	$gender = $_POST['rb_gender'];
 
 	echo "Registration Details";
 	//echo "<br>ID: ".$id;
-	echo "<br>NAME: ".$name;
+	echo "<br>NAME: ".$fname." ",$lname;
+	echo "<br>USERNAME: ".$username;
 	echo "<br>MOBILE: ".$mobile;
 	echo "<br>EMAIL ID: ".$email;
-	echo "<br>COLLEGE: ".$college;
 	echo "<br>GENDER: ".$gender;
 
 	include("db_connection.php");
 
-	$sql = "insert into db_users (
-		name,
+	$sql = "INSERT INTO db_client (
+		username,
+		password,
+		first_name,
+		last_name,
 		mobile,
 		email,
-		college,
 		gender
-		)values(
-		'$name',
-		'$mobile',
-		'$email',
-		'$college',
-		'$gender')";
+	)VALUES(
+	'$username',
+	'$password',
+	'$fname',
+	'$lname',
+	'$mobile',
+	'$email',
+	'$gender')";
 	$result = mysqli_query($con, $sql);
-	if ($result) {
+	if($result){
 		echo "<b>"."<i>"."<br>Data Insertion Succession"."</i>"."</b>";
 		$id=mysqli_insert_id($con);
 		echo "<br>ID: ".$id;
@@ -36,5 +42,4 @@
 		echo "<b>"."<i>"."<br>Data Insertion Failed"."</i>"."</b>";
 		die(mysqli_error());
 	}
-
 ?>
