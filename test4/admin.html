@@ -1,3 +1,26 @@
+<?php
+$con = mysqli_connect('localhost', 'root', '', 'snklp16');
+$db = mysqli_select_db($con, 'snklp');
+if(isset($_GET['bt_usr_search'])){
+	$id = $_GET['tb_uid'];
+	if($id==""){
+		$sql = "SELECT * FROM db_users";
+	}else{
+		$sql = "SELECT * FROM db_users WHERE id = '$id'";
+	}
+	$usr_result = mysqli_query($con, $sql);
+}
+if(isset($_GET['bt_grp_search'])){
+	$id = $_GET['tb_gid'];
+	echo $id;
+	if($id==""){
+		$sql = "SELECT * FROM db_groups";
+	}else{
+		$sql = "SELECT * FROM db_groups WHERE group_id = '$id'";
+	}
+	$grp_result = mysqli_query($con, $sql);
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,49 +123,212 @@
             </form>
           </center>
         </div>
-          <div id="user_search" class="tab-pane fade">
-            <center>
-              <h2>Users</h2>
-              <form name="fm_usr_search" action="user_result.php" onsubmit="return validation(fm_usr_search)" method="post">
-                <center>
-                  <table>
-                    <tr>
-                      <td>
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">@</span>
-                          <input type="text" class="form-control" placeholder="User Name" aria-describedby="basic-addon1">
-                        </div>
-                      </td>
-                      <td>
-                        &nbsp<input class="btn btn-default" type="submit" value="Search">
-                      </td>
-                    </tr>
-                  </table>
-                </center>
-              </form>
-            </center>
-          </div>
-          <div id="group_search" class="tab-pane fade">
-            <center>
-              <h2>Groups</h2><form name="fm_grp_search" action="group_result.php" onsubmit="return validation(fm_grp_search)" method="post">
-                <center>
-                  <table>
-                    <tr>
-                      <td>
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">@</span>
-                          <input type="text" class="form-control" placeholder="Group Name" aria-describedby="basic-addon1">
-                        </div>
-                      </td>
-                      <td>
-                        &nbsp<input class="btn btn-default" type="submit" value="Search">
-                      </td>
-                    </tr>
-                  </table>
-                </center>
-              </form>
-            </center>
-          </div>
+				<div id="user_search" class="tab-pane fade">
+					<center>
+						<h2>  </h2>
+					</center>
+					<form name="fm_adm_usr" action="" onsubmit="return validation(fm_adm_usr)" method="GET">
+						<center>
+							<table>
+								<tr>
+									<td>
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1">@</span>
+											<input type="text" class="form-control" placeholder="User ID" aria-describedby="basic-addon1" name="tb_uid" id="tb_uid">
+										</div>
+									</td>
+									<td>
+										&nbsp<input class="btn btn-default" type="submit" value="Search" name="bt_usr_search" id="bt_usr_search">
+									</td>
+								</tr>
+							</table></center>
+						</form>
+						<div class="container">
+							<h2>User List</h2>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Name</th>
+										<th>Gender</th>
+										<th>Mobile</th>
+										<th>Email ID</th>
+										<th>College</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									if(isset($usr_result)){
+									while ($row = mysqli_fetch_array($usr_result)){
+										$uid = $row['id'];
+										$name = $row['name'];
+										$gender = $row['gender'];
+										$mobile = $row['mobile'];
+										$email = $row['email'];
+										$college = $row['college'];
+										?>
+										<tr>
+											<td>
+												<div class="input-group">
+													<div class="col-sm-10">
+														<p class="form-control-static">
+															<?php
+																	echo $uid;
+															?>
+														</p>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="input-group">
+													<input type="text" class="form-control" placeholder="User Name" aria-describedby="basic-addon1"  name="tb_name" id="tb_name" value="<?php echo $name; ?>">
+												</div>
+											</td>
+											<td>
+												<div class="input-group">
+													<input type="text" class="form-control" placeholder="Gender" aria-describedby="basic-addon1" name="tb_gender" id="tb_gender" value="<?php echo $gender; ?>" >
+												</div>
+											</td>
+											<td>
+												<div class="input-group">
+													<input type="text" class="form-control" placeholder="Mobile" aria-describedby="basic-addon1" name="tb_mobile" id="tb_mobile" value="<?php echo $mobile; ?>">
+												</div>
+											</td>
+											<td>
+												<div class="input-group">
+													<input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1" name="tb_email" id="tb_email" value="<?php echo $email; ?>">
+												</div>
+											</td>
+											<td>
+												<div class="input-group">
+													<input type="text" class="form-control" placeholder="College" aria-describedby="basic-addon1" name="tb_college" id="tb_college" value="<?php echo $college; ?>">
+												</div>
+											</td>
+										</tr>
+										<?php }} ?>
+									</tbody>
+									<tr>
+										<td></td>
+										<td></td>
+										<td>
+											<center><input class="btn btn-default" type="submit" name="bt_update" id="bt_update" value="Update"></center>
+										</td>
+										<td>
+											<center><input class="btn btn-default" type="submit" name="bt_delete" value="Delete"></center>
+										</td>
+										<td></td>
+										<td></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div id="group_search" class="tab-pane fade">
+							<center>
+								<h2>  </h2>
+							</center>
+							<form name="fm_adm_grp" action="" onsubmit="return validation(fm_adm_grp)" method="GET">
+								<center>
+									<table>
+										<tr>
+											<td>
+												<div class="input-group">
+													<span class="input-group-addon" id="basic-addon1">@</span>
+													<input type="text" class="form-control" placeholder="Group ID" aria-describedby="basic-addon1" name="tb_gid" id="tb_gid">
+												</div>
+											</td>
+											<td>
+												&nbsp<input class="btn btn-default" type="submit" value="Submit" name="bt_grp_search" id="bt_grp_search">
+											</td>
+										</tr>
+									</table></center>
+								</form>
+								<div class="container">
+									<h2>User List</h2>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Name</th>
+												<th>Event</th>
+												<th>Member 1</th>
+												<th>Member 2</th>
+												<th>Member 3</th>
+												<th>Member 4</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											if(isset($grp_result)){
+											while ($row = mysqli_fetch_array($grp_result)){
+												$gid = $row['group_id'];
+												$name = $row['name'];
+												$event = $row['event'];
+												$mem1 = $row['member1'];
+												$mem2 = $row['member2'];
+												$mem3 = $row['member3'];
+												$mem4 = $row['member4'];
+											?>
+												<tr>
+													<td>
+														<div class="input-group">
+															<div class="col-sm-10">
+																<p class="form-control-static">
+																	<?php
+																			echo $gid;
+																	?>
+																</p>
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="input-group">
+															<input type="text" class="form-control" placeholder="User Name" aria-describedby="basic-addon1"  name="tb_name" id="tb_name" value="<?php echo $name; ?>">
+														</div>
+													</td>
+													<td>
+														<div class="input-group">
+															<input type="text" class="form-control" placeholder="Gender" aria-describedby="basic-addon1" name="tb_event" id="tb_event" value="<?php echo $event; ?>" >
+														</div>
+													</td>
+													<td>
+														<div class="input-group">
+															<input type="text" class="form-control" placeholder="Mobile" aria-describedby="basic-addon1" name="tb_mem1" id="tb_mem1" value="<?php echo $mem1; ?>">
+														</div>
+													</td>
+													<td>
+														<div class="input-group">
+															<input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1" name="tb_mem2" id="tb_mem2" value="<?php echo $mem2; ?>">
+														</div>
+													</td>
+													<td>
+														<div class="input-group">
+															<input type="text" class="form-control" placeholder="College" aria-describedby="basic-addon1" name="tb_mem3" id="tb_mem3" value="<?php echo $mem3; ?>">
+														</div>
+													</td>
+													<td>
+														<div class="input-group">
+															<input type="text" class="form-control" placeholder="College" aria-describedby="basic-addon1" name="tb_mem4" id="tb_mem4" value="<?php echo $mem4; ?>">
+														</div>
+													</td>
+												</tr>
+												<?php }} ?>
+											</tbody>
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td>
+													<center><input class="btn btn-default" type="submit" name="bt_update" id="bt_update" value="Update"></center>
+												</td>
+												<td>
+													<center><input class="btn btn-default" type="submit" name="bt_delete" value="Delete"></center>
+												</td>
+												<td></td>
+												<td></td>
+											</tr>
+										</table>
+									</div>
+								</div>
         </div>
       </div>
 </body>

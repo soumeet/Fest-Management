@@ -1,12 +1,11 @@
 <?php
-$con = mysqli_connect('localhost', 'root', '', 'snklp16');
-$db = mysqli_select_db($con, 'snklp');
-if(isset($_GET['bt_grp_search'])){
-	/*if(empty($_GET['tb_gid'])){
+include("db_connection.php");
+if(isset($_GET['bt_search'])){
+	/*if(empty($_GET['tb_id'])){
 		echo "Enter a search term";
 		$err = "Enter a search term";
 	}*/
-	$id = $_GET['tb_gid'];
+	$id = $_GET['tb_id'];
 	//echo $id;
 	if($id==""){
 		$sql = "SELECT * FROM db_groups";
@@ -39,11 +38,11 @@ if(isset($_GET['bt_grp_search'])){
 					<td>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1">@</span>
-							<input type="text" class="form-control" placeholder="Group ID" aria-describedby="basic-addon1" name="tb_gid" id="tb_gid">
+							<input type="text" class="form-control" placeholder="Group ID" aria-describedby="basic-addon1" name="tb_id" id="tb_id">
 						</div>
 					</td>
 					<td>
-						&nbsp<input class="btn btn-default" type="submit" value="Submit" name="bt_grp_search" id="bt_grp_search">
+						&nbsp<input class="btn btn-default" type="submit" value="Submit" name="bt_search" id="bt_search">
 					</td>
 				</tr>
 			</table></center>

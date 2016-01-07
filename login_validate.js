@@ -12,4 +12,14 @@ function login_validation(form){
 		alert("Invalid Password");
 		return false;
 	}
+	if(form.name=="fm_adm_login"){
+		if (USERNAME!="admin") {
+			alert("Wrong Username");
+			return false;
+		}
+		if (PASSWORD!="root") {
+			alert("Wrong Password");
+			return false;
+		}
+	}
 }
