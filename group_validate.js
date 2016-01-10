@@ -11,7 +11,7 @@ function group_validation(form){
 		alert("Group Name cannot be empty");
 		return false;
 	}
-	if (EVENT=="Event") {
+	if (EVENT=="EVENT") {
 		alert("Select a Event");
 		return false;
 	}

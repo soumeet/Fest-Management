@@ -11,13 +11,72 @@ if(isset($_GET['bt_usr_search'])){
 }
 if(isset($_GET['bt_grp_search'])){
 	$id = $_GET['tb_gid'];
-	echo $id;
 	if($id==""){
 		$sql = "SELECT * FROM db_groups";
 	}else{
 		$sql = "SELECT * FROM db_groups WHERE group_id = '$id'";
 	}
 	$grp_result = mysqli_query($con, $sql);
+}
+if(isset($_GET['bt_usr_update'])){
+	$id = $_GET['tb_uid'];
+	$name = $_GET['tb_name'];
+	$gender = $_GET['rb_gender'];
+	$mobile = $_GET['tb_mobile'];
+	$email = $_GET['tb_email'];
+	$college = $_GET['tb_college'];
+	if($id==""){
+		echo "Please Provide a User ID";
+	}else{
+		$sql = "UPDATE db_users SET
+		name = '$name',
+		gender = '$gender',
+		mobile = '$mobile',
+		email = '$email',
+		college = '$college'
+		WHERE id='$id'";
+	}
+	$usr_updated_result = mysqli_query($con, $sql);
+}
+if(isset($_GET['bt_grp_update'])){
+  $id = $_GET['tb_gid'];
+  $name = $_GET['tb_name'];
+  $event = $_GET['cb_event'];
+  $mem1 = $_GET['tb_mem1'];
+  $mem2 = $_GET['tb_mem2'];
+  $mem3 = $_GET['tb_mem3'];
+  $mem4 = $_GET['tb_mem4'];
+  if($id==""){
+    echo "Please Provide a Group ID";
+  }else{
+    $sql = "UPDATE db_groups SET
+    name = '$name',
+    event = '$event',
+    member1 = '$mem1',
+    member2 = '$mem2',
+    member3 = '$mem3',
+    member4 = '$mem4'
+    WHERE group_id='$id'";
+  }
+  $grp_updated_result = mysqli_query($con, $sql);
+}
+if(isset($_GET['bt_usr_delete'])){
+	$id = $_GET['tb_uid'];
+	if($id==""){
+		echo "Please Provide a User ID";
+	}else{
+		$sql = "DELETE * FROM db_users WHERE id = '$id'";
+	}
+	$usr_result = mysqli_query($con, $sql);
+}
+if(isset($_GET['bt_grp_delete'])){
+  $id = $_GET['tb_gid'];
+  if($id==""){
+    echo "Please Provide a Group ID";
+  }else{
+    $sql = "DELETE FROM db_groups WHERE  group_id='$id'";
+  }
+  $grp_deleted_result = mysqli_query($con, $sql);
 }
 ?>
 <!DOCTYPE html>
@@ -166,16 +225,11 @@ if(isset($_GET['bt_grp_search'])){
 											$email = $row['email'];
 											$college = $row['college'];
 											?>
+											<form name="fm_adm_usr_update" action="" onsubmit="return validation(fm_adm_usr)" method="GET">
 											<tr>
 												<td>
 													<div class="input-group">
-														<div class="col-sm-10">
-															<p class="form-control-static">
-																<?php
-																		echo $uid;
-																?>
-															</p>
-														</div>
+														<input type="text" readonly class="form-control" placeholder="ID" aria-describedby="basic-addon1"  name="tb_uid" id="tb_uid" value="<?php  echo $uid; ?>">
 													</div>
 												</td>
 												<td>
@@ -184,9 +238,14 @@ if(isset($_GET['bt_grp_search'])){
 													</div>
 												</td>
 												<td>
-													<div class="input-group">
-														<input type="text" class="form-control" placeholder="Gender" aria-describedby="basic-addon1" name="tb_gender" id="tb_gender" value="<?php echo $gender; ?>" >
-													</div>
+													<label class="radio inline">
+														<center>
+															<input type="radio" name="rb_gender" id="rb_gender" value="MALE" <?php if($gender=='M') echo "checked"; ?>>
+															M&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+															<input type="radio" name="rb_gender" id="rb_gender" value="FEMALE" <?php if($gender=='F') echo "checked"; ?>>
+															F
+														</center>
+													</label>
 												</td>
 												<td>
 													<div class="input-group">
@@ -204,20 +263,21 @@ if(isset($_GET['bt_grp_search'])){
 													</div>
 												</td>
 											</tr>
+											<tr>
+												<td></td>
+												<td></td>
+												<td>
+													<center><input class="btn btn-default" type="submit" name="bt_usr_update" id="bt_usr_update" value="Update"></center>
+												</td>
+												<td>
+													<center><input class="btn btn-default" type="submit" name="bt_usr_delete" id="bt_usr_update" value="Delete"></center>
+												</td>
+												<td></td>
+												<td></td>
+											</tr>
+											</form>
 											<?php }} ?>
 										</tbody>
-										<tr>
-											<td></td>
-											<td></td>
-											<td>
-												<center><input class="btn btn-default" type="submit" name="bt_update" id="bt_update" value="Update"></center>
-											</td>
-											<td>
-												<center><input class="btn btn-default" type="submit" name="bt_delete" value="Delete"></center>
-											</td>
-											<td></td>
-											<td></td>
-										</tr>
 									</table>
 								</div>
 							</div>
@@ -242,7 +302,7 @@ if(isset($_GET['bt_grp_search'])){
 										</table></center>
 									</form>
 									<div class="container">
-										<h2>User List</h2>
+										<h2>Group List</h2>
 										<table class="table table-hover">
 											<thead>
 												<tr>
@@ -267,17 +327,12 @@ if(isset($_GET['bt_grp_search'])){
 													$mem3 = $row['member3'];
 													$mem4 = $row['member4'];
 												?>
+												<form name="fm_adm_usr_update" action="" onsubmit="return validation(fm_adm_usr)" method="GET">
 													<tr>
 														<td>
 															<div class="input-group">
-																<div class="col-sm-10">
-																	<p class="form-control-static">
-																		<?php
-																				echo $gid;
-																		?>
-																	</p>
-																</div>
-															</div>
+										            <input type="text" readonly class="form-control" placeholder="ID" aria-describedby="basic-addon1"  name="tb_gid" id="tb_gid" value="<?php  echo $gid; ?>">
+										          </div>
 														</td>
 														<td>
 															<div class="input-group">
@@ -285,8 +340,17 @@ if(isset($_GET['bt_grp_search'])){
 															</div>
 														</td>
 														<td>
-															<div class="input-group">
-																<input type="text" class="form-control" placeholder="Gender" aria-describedby="basic-addon1" name="tb_event" id="tb_event" value="<?php echo $event; ?>" >
+															<div class="form-group">
+																<select class="form-control" name="cb_event" id="cb_event">
+																	<option value="ROBOWAR" <?php if ($event=="ROBOWAR") {?> selected="selected" <?php } ?>>RoboWar</option>
+																	<option value="ROBOEXPLORER" <?php if ($event=="ROBOEXPLORER") {?> selected="selected" <?php } ?>>RoboXplorer</option>
+																	<option value="ROBOSOCCER"<?php if ($event=="ROBOSOCCER") {?> selected="selected" <?php } ?>>RoboSoccer</option>
+																	<option value="CS16" <?php if ($event=="CS16") {?> selected="selected" <?php } ?>>CounterStrike</option>
+																	<option value="FIFA"<?php if ($event=="FIFA") {?> selected="selected" <?php } ?> >Fifa</option>
+																	<option value="NFS" <?php if ($event=="NFS") {?> selected="selected" <?php } ?>>Need For Speed</option>
+																	<option value="CODING" <?php if ($event=="CODING") {?> selected="selected" <?php } ?>>Coding</option>
+																	<option value="JUNKYARD" <?php if ($event=="JUNKYARD") {?> selected="selected" <?php } ?>>JunkYard</option>
+																</select>
 															</div>
 														</td>
 														<td>
@@ -310,20 +374,22 @@ if(isset($_GET['bt_grp_search'])){
 															</div>
 														</td>
 													</tr>
+													<tr>
+														<td></td>
+														<td></td>
+														<td>
+															<center><input class="btn btn-default" type="submit" name="bt_grp_update" id="bt_grp_update" value="Update"></center>
+														</td>
+														<td></td>
+														<td>
+															<center><input class="btn btn-default" type="submit" name="bt_grp_delete" id="bt_grp_delete" value="Delete"></center>
+														</td>
+														<td></td>
+														<td></td>
+													</tr>
+													</form>
 													<?php }} ?>
 												</tbody>
-												<tr>
-													<td></td>
-													<td></td>
-													<td>
-														<center><input class="btn btn-default" type="submit" name="bt_update" id="bt_update" value="Update"></center>
-													</td>
-													<td>
-														<center><input class="btn btn-default" type="submit" name="bt_delete" value="Delete"></center>
-													</td>
-													<td></td>
-													<td></td>
-												</tr>
 											</table>
 										</div>
 									</div>
