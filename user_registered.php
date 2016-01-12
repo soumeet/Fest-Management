@@ -29,11 +29,15 @@
 		'$gender')";
 	$result = mysqli_query($con, $sql);
 	if ($result) {
-		echo "<b>"."<i>"."<br>Data Insertion Succession"."</i>"."</b>";
+		//echo "<b>"."<i>"."<br>Data Insertion Succession"."</i>"."</b>";
 		$id=mysqli_insert_id($con);
 		echo "<br>ID: ".$id;
+		header("Location: client.html#usr_reg");
+		echo '<script type="text/javascript">alert("Registration Successful. ID: ' . $id . '");</script>';
+		exit;
 	}else{
-		echo "<b>"."<i>"."<br>Data Insertion Failed"."</i>"."</b>";
+		//echo "<b>"."<i>"."<br>Data Insertion Failed"."</i>"."</b>";
+		echo '<script type="text/javascript">alert("Registration Failed");</script>';
 		die(mysqli_error());
 	}
 
